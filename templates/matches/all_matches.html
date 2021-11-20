@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}All Matches{% endblock %}
+
+{% block content %}
+<style>
+  .logo {
+    width: 40%;
+  }
+</style>
+
+<!-- all clubs -->
+<div class="w3-margin">
+  <h3>All matches in the system</h3>
+  <table class="w3-table w3-striped w3-padding">
+    <thead class="w3-dark-grey w3-padding">
+      <th>ID</th>
+      <th>GAMEWEEK</th>
+      <th>STATUS</th>
+      <th>DATE</th>
+      <th>HOME CLUB</th>
+      <th>AWAY CLUB</th>
+      <th>HOME SCORE</th>
+      <th>AWAY SCORE</th>
+      <th>PREDICTED HOME SCORE</th>
+      <th>PREDICTED AWAY SCORE</th>
+    </thead>
+    <tbody class="w3-padding">
+      {% for match in matches %}
+      <tr>
+        <td><b>{{ match.id }}</b></td>
+        <td>{{ match.gameweek }}</td>
+        <td>{{ match.status }}</td>
+        <td>{{ match.date }}</td>
+        <td>{{ match.home_club }}</td>
+        <td>{{ match.away_club }}</td>
+        <td>{{ match.home_score }}</td>
+        <td>{{ match.away_score }}</td>
+        <td>{{ match.predicted_home_score }}</td>
+        <td>{{ match.predicted_away_score }}</td>
+        <td><a href="/patch/{{match.id}}"><div class="w3-btn w3-ripple w3-text-orange w3-small">edit</div></a></td>
+        <td><a href="/delete/{{match.id}}"><div class="w3-btn w3-ripple w3-text-red w3-small">del</div></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+{% endblock %}

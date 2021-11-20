@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+<div class="w3-margin">
+  {% for week in epl_matches %}
+  {% if week['status'] == 'next' %}
+  <h3>Predictions for {{ week['gameweek'] }} </h3>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<div class="w3-margin" style="width:40%;">
+  {% for week in epl_matches %}
+  {% if week['status'] == 'next' %}
+  {% for match in week['matchlist'] %}
+  <div class="w3-container">
+    <div class="w3-btn w3-ripple w3-border w3-round" style="width: 100%">
+      <div class="w3-cell-row">
+        <div class="w3-cell w3-padding">
+          <h5>{{ match['home_club'] }}</h5>
+          <div class="">{{ match['predicted_home_score'] }}</div>
+        </div>
+        <div class="w3-cell w3-padding">vs</div>
+        <div class="w3-cell w3-padding">
+          <h5>{{ match['away_club'] }}</h5>
+          <div class="">{{ match['predicted_away_score'] }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endfor %}
+</div>
+
+{% endblock %}

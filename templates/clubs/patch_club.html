@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Edit Club{% endblock %}
+
+{% block content %}
+<style>
+  .logo {
+    width: 40%;
+  }
+</style>
+
+<div class="w3-margin">
+  <h3>Edit {{ club.club_name_long }}</h3>
+
+  <!-- for to create a new club -->
+  <div class="card">
+    <div class="card-body">
+      <form action="/patch/{{club.id}}" method="post">
+        {{ form.hidden_tag() }}
+
+        {% for field in form
+          if field.widget.input_type != 'hidden' %}
+          <div class="form-row">
+            <div class="col">
+              {{ field.label }}
+            </div>
+            <div class="col">
+                {{ field }}
+            </div>
+
+            {% for error in field.errors %}
+            <div class="">
+              {{ error }}
+            </div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+          <br>
+          <button class="btn btn-primary mb-2" type="submit">Edit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- all clubs -->
+  <div class="w3-margin">
+    <h3>All clubs in the system</h3>
+    <table class="w3-container w3-striped w3-padding">
+      <thead class="w3-dark-grey w3-padding">
+        <th></th>
+        <th>club</th>
+        <th>ATT</th>
+        <th>MID</th>
+        <th>DEF</th>
+        <th>OVR</th>
+      </thead>
+      <tbody class="w3-padding">
+        {% for club in clubs %}
+        <tr>
+          <td><img class="logo" src="{{club.club_logo}}" alt="8("></td>
+          <td><b>{{ club.club_name_long }}</b></td>
+          <td>{{ club.attack }}</td>
+          <td>{{ club.midfield }}</td>
+          <td>{{ club.defense }}</td>
+          <td>{{ club.rating_ovr }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+
+
+
+{% endblock %}

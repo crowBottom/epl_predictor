@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+<style>
+  .logo {
+    width: 30%;
+    padding: 0 10px;
+  }
+
+</style>
+
+<div class="w3-margin">
+
+  <table class="w3-table w3-striped w3-center" style="width:60%;">
+    <thead class="w3-dark-grey">
+      <th>Position</th>
+      <th class="w3-center">Club</th>
+      <th>Played</th>
+      <th>Win</th>
+      <th>Draw</th>
+      <th>Loss</th>
+      <th>GF</th>
+      <th>GA</th>
+      <th>Points</th>
+    </thead>
+    <tbody>
+      {% for club in clubs %}
+      <tr>
+        <td>{{ club.position }}</td>
+        <td><img class="logo" src="{{club.club_logo}}" alt="">{{ club.club_name_short }}</td>
+        <td>{{ club.played }}</td>
+        <td>{{ club.wins }}</td>
+        <td>{{ club.draws }}</td>
+        <td>{{ club.losses }}</td>
+        <td>{{ club.goals_for }}</td>
+        <td>{{ club.goals_against }}</td>
+        <td>{{ club.points }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

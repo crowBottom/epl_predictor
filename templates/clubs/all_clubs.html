@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}All Clubs{% endblock %}
+
+{% block content %}
+<style>
+  .logo {
+    width: 40%;
+  }
+</style>
+
+<!-- all clubs -->
+<div class="w3-margin">
+  <h3>All clubs in the system</h3>
+  <table class="w3-table w3-striped w3-padding">
+    <thead class="w3-dark-grey w3-padding">
+      <th></th>
+      <th>CLUB</th>
+      <th>ATT</th>
+      <th>MID</th>
+      <th>DEF</th>
+      <th>OVR</th>
+      <th>EDIT</th>
+      <th>DELETE</th>
+    </thead>
+    <tbody class="w3-padding">
+      {% for club in clubs %}
+      <tr>
+        <td><img class="logo" src="{{club.club_logo}}" alt="8("></td>
+        <td><b>{{ club.club_name_long }}</b></td>
+        <td>{{ club.attack }}</td>
+        <td>{{ club.midfield }}</td>
+        <td>{{ club.defense }}</td>
+        <td>{{ club.rating_ovr }}</td>
+        <td><a href="/patch/{{club.id}}"><div class="w3-btn w3-ripple w3-text-orange w3-small">edit</div></a></td>
+        <td><a href="/delete/{{club.id}}"><div class="w3-btn w3-ripple w3-text-red w3-small">del</div></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+{% endblock %}
