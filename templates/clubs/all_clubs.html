@@ -15,9 +15,8 @@
     <thead class="w3-dark-grey w3-padding">
       <th></th>
       <th>CLUB</th>
-      <th>ATT</th>
-      <th>MID</th>
-      <th>DEF</th>
+      <th>ATT FORM</th>
+      <th>DEF FORM</th>
       <th>OVR</th>
       <th>EDIT</th>
       <th>DELETE</th>
@@ -27,9 +26,8 @@
       <tr>
         <td><img class="logo" src="{{club.club_logo}}" alt="8("></td>
         <td><b>{{ club.club_name_long }}</b></td>
-        <td>{{ club.attack }}</td>
-        <td>{{ club.midfield }}</td>
-        <td>{{ club.defense }}</td>
+        <td>{{ club.att_form }}</td>
+        <td>{{ club.def_form }}</td>
         <td>{{ club.rating_ovr }}</td>
         <td><a href="/patch/{{club.id}}"><div class="w3-btn w3-ripple w3-text-orange w3-small">edit</div></a></td>
         <td><a href="/delete/{{club.id}}"><div class="w3-btn w3-ripple w3-text-red w3-small">del</div></a></td>

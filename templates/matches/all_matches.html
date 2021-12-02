@@ -8,10 +8,10 @@
   }
 </style>
 
-<!-- all clubs -->
+<!-- all matches -->
 <div class="w3-margin">
   <h3>All matches in the system</h3>
-  <table class="w3-table w3-striped w3-padding">
+  <table class="w3-table w3-striped w3-padding w3-centered">
     <thead class="w3-dark-grey w3-padding">
       <th>ID</th>
       <th>GAMEWEEK</th>
@@ -37,8 +37,8 @@
         <td>{{ match.away_score }}</td>
         <td>{{ match.predicted_home_score }}</td>
         <td>{{ match.predicted_away_score }}</td>
-        <td><a href="/patch/{{match.id}}"><div class="w3-btn w3-ripple w3-text-orange w3-small">edit</div></a></td>
-        <td><a href="/delete/{{match.id}}"><div class="w3-btn w3-ripple w3-text-red w3-small">del</div></a></td>
+        <td><a href="/update/{{match.id}}/match"><div class="w3-btn w3-ripple w3-text-orange w3-small">edit</div></a></td>
+        <td><a href="/delete/{{match.id}}/match"><div class="w3-btn w3-ripple w3-text-red w3-small">del</div></a></td>
       </tr>
       {% endfor %}
     </tbody>

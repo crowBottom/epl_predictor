@@ -1,36 +1,164 @@
 {% extends 'base.html' %}
 {% block title %}{% endblock %}
 {% block content %}
+<style>
+ img {
+   width: 30%;
+ }
+</style>
+
 <div class="w3-margin">
   {% for week in epl_matches %}
   {% if week['status'] == 'next' %}
-  <h3>Predictions for {{ week['gameweek'] }} </h3>
+  <h5>{{ week['gameweek'] }}</h5>
   {% endif %}
   {% endfor %}
 </div>
 
-<div class="w3-margin" style="width:40%;">
-  {% for week in epl_matches %}
-  {% if week['status'] == 'next' %}
-  {% for match in week['matchlist'] %}
-  <div class="w3-container">
-    <div class="w3-btn w3-ripple w3-border w3-round" style="width: 100%">
+{% for match in matches %}
+{% if match['status'] == 'next' %}
+{% if match['completion_status'] == 'pending' %}
+<div class="w3-btn w3-ripple w3-border w3-round w3-margin">
+
+  <!-- top of box -->
+  <div class="">
+
+    <!-- club vs club -->
+    <div class="w3-cell-row">
+      <!-- club home -->
+      <div class="w3-cell">
+        <div class="w3-cell"><span><img src={{match.home_logo}} alt=""></span>{{match.home_club}}</div>
+      </div>
+
+      <div class="w3-cell w3-padding">vs</div>
+
+      <!-- club away -->
+      <div class="w3-cell">
+        <div class="w3-cell"><span><img src={{match.away_logo}} alt=""></span>{{match.away_club}}</div>
+      </div>
+
+    </div>
+
+    <!-- score/status/score -->
+    <div class="w3-container w3-tiny">
+      <div class="">{{ match.time }}</div>
+      <div class="">{{ match.date }}</div>
+    </div>
+
+  </div>
+  <hr>
+
+  <!-- bottom half of box -->
+  <div class="w3-light-grey">
+
+    <!-- predicted scores -->
+    <div class="w3-tiny">
+      <div class="">predicted</div>
       <div class="w3-cell-row">
-        <div class="w3-cell w3-padding">
-          <h5>{{ match['home_club'] }}</h5>
-          <div class="">{{ match['predicted_home_score'] }}</div>
-        </div>
-        <div class="w3-cell w3-padding">vs</div>
-        <div class="w3-cell w3-padding">
-          <h5>{{ match['away_club'] }}</h5>
-          <div class="">{{ match['predicted_away_score'] }}</div>
-        </div>
+        <div class="w3-cell w3-padding">{{ match.predicted_home_score }}</div>
+        <div class="w3-cell w3-padding">{{ match.predicted_away_score }}</div>
       </div>
     </div>
   </div>
-  {% endfor %}
-  {% endif %}
-  {% endfor %}
+
 </div>
+
+{% elif match['completion_status'] == 'live'  %}
+<div class="w3-btn w3-ripple w3-border w3-round w3-margin">
+
+  <!-- top of box -->
+  <div class="">
+
+    <!-- club vs club -->
+    <div class="w3-cell-row">
+      <!-- club home -->
+      <div class="w3-cell">
+        <div class="w3-cell"><span><img src={{match.home_logo}} alt=""></span>{{match.home_club}}</div>
+      </div>
+
+      <div class="w3-cell w3-padding">vs</div>
+
+      <!-- club away -->
+      <div class="w3-cell">
+        <div class="w3-cell"><span><img src={{match.away_logo}} alt=""></span>{{match.away_club}}</div>
+      </div>
+
+    </div>
+
+    <!-- score/status/score -->
+    <div class="w3-row w3-margin">
+      <div class="w3-third w3-border w3-round"><b>{{ match.home_score }}</b></div>
+      <div class="w3-third w3-tiny"><b>{{ match['completion_status'] }}</b></div>
+      <div class="w3-third w3-border w3-round"><b>{{ match.away_score }}</b></div>
+    </div>
+
+  </div>
+  <hr>
+
+  <!-- bottom half of box -->
+  <div class="w3-light-grey">
+
+    <!-- predicted scores -->
+    <div class="w3-tiny">
+      <div class="">predicted</div>
+      <div class="w3-cell-row">
+        <div class="w3-cell w3-padding">{{ match.predicted_home_score }}</div>
+        <div class="w3-cell w3-padding">{{ match.predicted_away_score }}</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% elif match['completion_status'] == 'final'  %}
+<div class="w3-btn w3-ripple w3-border w3-round w3-margin">
+
+  <!-- top of box -->
+  <div class="">
+
+    <!-- club vs club -->
+    <div class="w3-cell-row">
+      <!-- club home -->
+      <div class="w3-cell">
+        <div class="w3-cell"><span><img src={{match.home_logo}} alt=""></span>{{match.home_club}}</div>
+      </div>
+
+      <div class="w3-cell w3-padding">v</div>
+
+      <!-- club away -->
+      <div class="w3-cell">
+        <div class="w3-cell"><span><img src={{match.away_logo}} alt=""></span>{{match.away_club}}</div>
+      </div>
+
+    </div>
+
+    <!-- score/status/score -->
+    <div class="w3-row w3-margin">
+      <div class="w3-third w3-border w3-round"><b>{{ match.home_score }}</b></div>
+      <div class="w3-third w3-tiny"><b>{{ match['completion_status'] }}</b></div>
+      <div class="w3-third w3-border w3-round"><b>{{ match.away_score }}</b></div>
+    </div>
+
+  </div>
+  <hr>
+
+  <!-- bottom half of box -->
+  <div class="w3-light-grey">
+
+    <!-- predicted scores -->
+    <div class="w3-tiny">
+      <div class="">predicted</div>
+      <div class="w3-cell-row">
+        <div class="w3-cell w3-padding">{{ match.predicted_home_score }}</div>
+        <div class="w3-cell w3-padding">{{ match.predicted_away_score }}</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+
 
 {% endblock %}

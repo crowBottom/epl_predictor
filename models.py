@@ -24,25 +24,30 @@ class Clubs(db.Model):
     goals_for = db.Column(db.Integer, nullable=True)
     goals_against = db.Column(db.Integer, nullable=True)
     position = db.Column(db.Integer, nullable=True)
-
-    attack = db.Column(db.Integer, nullable=True)
-    midfield = db.Column(db.Integer, nullable=True)
-    defense = db.Column(db.Integer, nullable=True)
+    set_piece_goals_per_match = db.Column(db.Integer, nullable=True)
+    set_piece_goals_per_match_against = db.Column(db.Integer, nullable=True)
     rating_ovr = db.Column(db.Integer, nullable=True)
-
-    home_form = db.Column(db.Integer, nullable=True)
-    away_form = db.Column(db.Integer, nullable=True)
+    att_form = db.Column(db.Integer, nullable=True)
+    def_form = db.Column(db.Integer, nullable=True)
 
 class Matches(db.Model):
     __tablename__ = "matches"
 
     id = db.Column(db.Integer, primary_key=True, unique=True)
     status = db.Column(db.Text, nullable=True)
+    completion_status = db.Column(db.Text, nullable=True)
+    gameweek = db.Column(db.Text, nullable=True)
     date = db.Column(db.Text, nullable=True)
     time = db.Column(db.Text, nullable=True)
+    home_logo = db.Column(db.Text, nullable=True)
     home_club = db.Column(db.Text, nullable=True)
+    away_logo = db.Column(db.Text, nullable=True)
     away_club = db.Column(db.Text, nullable=True)
     home_score = db.Column(db.Integer, nullable=True)
     away_score = db.Column(db.Integer, nullable=True)
+    home_att_form = db.Column(db.Integer, nullable=True)
+    home_def_form = db.Column(db.Integer, nullable=True)
+    away_att_form = db.Column(db.Integer, nullable=True)
+    away_def_form = db.Column(db.Integer, nullable=True)
     predicted_home_score = db.Column(db.Integer, nullable=True)
     predicted_away_score = db.Column(db.Integer, nullable=True)
